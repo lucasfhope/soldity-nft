@@ -6,13 +6,11 @@ import {BasicNFT} from "src/BasicNFT.sol";
 import {DevOpsTools} from "@foundry-devops/src/DevOpsTools.sol";
 
 contract MintBasicNFT is Script {
-    string public constant cuteStar = "ipfs://Qmd1XMbbLSSybB4W4i3anjhbsbitWkBnLa4VTwAAM2sY13?filename=star-metadata.json"; 
+    string public constant cuteStar =
+        "ipfs://Qmd1XMbbLSSybB4W4i3anjhbsbitWkBnLa4VTwAAM2sY13/?filename=star-metadata.json";
 
     function run() external {
-        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-            "BasicNFT",
-            block.chainid
-        );
+        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("BasicNFT", block.chainid);
         mintNFTOnContract(mostRecentlyDeployed);
     }
 
@@ -20,5 +18,5 @@ contract MintBasicNFT is Script {
         vm.startBroadcast();
         BasicNFT(contractAddress).mintNFT(cuteStar);
         vm.stopBroadcast();
-    } 
+    }
 }

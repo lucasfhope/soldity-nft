@@ -11,10 +11,9 @@ contract BasicNFTTest is Test {
     BasicNFT basicNFT;
     MintBasicNFT mintBasicNFT;
 
-    
-
     address public USER = makeAddr("user");
-    string public constant cuteStar = "ipfs://Qmd1XMbbLSSybB4W4i3anjhbsbitWkBnLa4VTwAAM2sY13?filename=star-metadata.json"; 
+    string public constant cuteStar =
+        "ipfs://Qmd1XMbbLSSybB4W4i3anjhbsbitWkBnLa4VTwAAM2sY13?filename=star-metadata.json";
 
     // event emitted by ERC721.sol during token transfer
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
@@ -57,7 +56,7 @@ contract BasicNFTTest is Test {
 
     function testTokenURIRevertsForNonExistentTokenDuringTransfer() public {
         address scott = makeAddr("scott");
-        
+
         // no token has been minted yet
         vm.expectRevert();
         vm.prank(USER);
@@ -66,7 +65,7 @@ contract BasicNFTTest is Test {
 
     function testTransferNFT() public {
         address scott = makeAddr("scott");
-        
+
         vm.prank(USER);
         basicNFT.mintNFT(cuteStar);
         uint256 tokenId = 0;
