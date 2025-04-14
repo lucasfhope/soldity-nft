@@ -18,10 +18,7 @@ contract MoodNFT is ERC721 {
 
     mapping(uint256 => Mood) private s_tokenIdToMood;
 
-    constructor(
-        string memory sadSVGImageURI,
-        string memory happySVGImageURI
-    ) ERC721("MooD NFT", "MDN") {
+    constructor(string memory sadSVGImageURI, string memory happySVGImageURI) ERC721("MooD NFT", "MDN") {
         s_sadSVGImageURI = sadSVGImageURI;
         s_happySVGImageURI = happySVGImageURI;
         s_tokenCounter = 0;
@@ -45,7 +42,7 @@ contract MoodNFT is ERC721 {
         }
     }
 
-    function _baseURI() internal pure override returns(string memory) {
+    function _baseURI() internal pure override returns (string memory) {
         return "data:application/json;base64,";
     }
 
@@ -57,19 +54,21 @@ contract MoodNFT is ERC721 {
             imageURI = s_sadSVGImageURI;
         }
 
-        return 
-            string(
-                abi.encodePacked(
-                    _baseURI(),
-                    Base64.encode(
-                        bytes(
-                            abi.encodePacked(
-                                '{"name": "', name(), '", "description": "An NFT that can change based on the owners mood.", "attributes": [{"trait_type": "moodiness", "value": 100}], "image": "', imageURI, '"}'
-                            )
+        return string(
+            abi.encodePacked(
+                _baseURI(),
+                Base64.encode(
+                    bytes(
+                        abi.encodePacked(
+                            '{"name": "',
+                            name(),
+                            '", "description": "An NFT that can change based on the owners mood.", "attributes": [{"trait_type": "moodiness", "value": 100}], "image": "',
+                            imageURI,
+                            '"}'
                         )
                     )
                 )
-            );
+            )
+        );
     }
-
 }
