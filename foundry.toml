@@ -3,7 +3,6 @@ src = "src"
 out = "out"
 libs = ["lib"]
 remappings = ["@openzeppelin/contracts=lib/openzeppelin-contracts/contracts", "@foundry-devops=lib/foundry-devops"]
-ffi = false
 fs_permissions = [
   { access = "read", path = "./broadcast" },
   { access = "read", path = "./img" }
